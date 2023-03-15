@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>LocalStorage</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <h2>Создай Свою Пиццу!</h2>
+    <p></p>
+    <ul class="items-list">
+      <li>Загружаю ингредиенты...</li>
+    </ul>
+    <form class="add-items-form">
+      <input type="text" style="margin-top: 10px; width: 100%; font-family: cursive; border-radius: 10px; border: 2px solid black; text-align: center; padding: 3px;" name="item" placeholder="Что будем добавлять?"
+        autocomplete="off" required>
+      <div class="btns">
+        <input type="submit" class="btn" style="margin-bottom: 10px;" value="+ Добавить ингредиент">
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    const addItemsForm = document.querySelector('.add-items-form')
+    const itemsList = document.querySelector('.items-list')
+    let items = JSON.parse(localStorage.getItem('items')) || []
+
+    function addItem(e) {
+      e.preventDefault()
+      const text = e.target.item.value
+      const item = {
+        text: text,
+        checked: false
+      }
+      items.push(item)
+      localStorage.setItem('items', JSON.stringify(items))
+      displayItems(items, itemsList)
+      this.reset()
+    }
+
+    function displayItems(ingredients, ingredientsList) {
+      ingredientsList.innerHTML = ingredients.map((ingredient, index) => {
+        return `<li>
+          <input type='checkbox' id='item${index}' data-index='${index}' ${ingredient.checked ? 'checked' : ''}/>
+          <label for='item${index}'>${ingredient.text}</label>
+          <button class="remove btn" data-index="${index}">Удалить</button>
+        </li>`
+      }).join('')
+    }
+
+    function toggleClick(e) {
+      if (!e.target.matches('input[type="checkbox"]') && !e.target.matches('.remove')) return
+
+      const element = e.target.dataset.index
+      if (e.target.matches('input[type="checkbox"]')) {
+        items[element].checked = !items[element].checked
+      } else if (e.target.matches('.remove')) {
+        remove(element);
+      }
+
+      localStorage.setItem('items', JSON.stringify(items))
+      displayItems(items, itemsList)
+    }
+
+    function remove(index) {
+      items.splice(index, 1);
+      localStorage.setItem('items', JSON.stringify(items));
+      displayItems(items, itemsList);
+    }
+
+    itemsList.addEventListener('click', toggleClick)
+    addItemsForm.addEventListener('submit', addItem)
+    displayItems(items, itemsList)
+  </script>
+
+
+</body>
+
+</html>

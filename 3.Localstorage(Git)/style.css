@@ -1,0 +1,103 @@
+html {
+  box-sizing: border-box;
+  background: url(https://static.vecteezy.com/system/resources/previews/005/581/008/original/illustration-of-a-slice-of-pizza-in-cartoon-style-suitable-for-design-element-of-pizza-restaurant-and-italian-food-menu-tasty-delicious-pizza-illustration-free-vector.jpg) center no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.wrapper {
+  padding: 20px;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin: 0;
+  font-weight: 200;
+  font-family: cursive;
+}
+
+.items-list {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  list-style: none;
+  
+}
+
+.items-list li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  font-weight: 100;
+  display: flex;
+  
+}
+
+.items-list label {
+  flex: 1;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.items-list input {
+  display: none;
+  
+}
+
+.items-list input + label:before {
+  content: '⬜️';
+  margin-right: 10px;
+}
+
+.items-list input:checked + label:before {
+  content: url(https://img.icons8.com/material-rounded/1x/checkmark.png);
+}
+
+.add-items {
+  margin-top: 20px;
+}
+
+.add-items input {
+  padding: 10px;
+  outline: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btns{
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.btn{
+  font-family: cursive;
+  border-radius: 20px;
+}
+
+li{
+  font-family: cursive;
+}
+
+.remove{
+  font-size: 15px;
+  cursor: pointer;
+  background-color: rgb(149, 102, 102);
+  color: aliceblue;
+  border: none;
+}
